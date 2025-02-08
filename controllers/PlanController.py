@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Depends
+from typing import Annotated
+
+from fastapi import APIRouter, Depends, Body
 
 from db import get_db_session
 from sqlalchemy.orm import Session
@@ -8,44 +10,49 @@ from services import PlanService
 router = APIRouter(prefix="/plans", tags=["Plan"])
 
 
+# 계획 생성
 @router.post("")
-async def create_plan(req: PlanCreate, session: Session = Depends(get_db_session)):
-    """
-    계획 생성 API
-    요청 JSON 예시:
-    {
-        "writer_id": 1,
-        "local_name": "부산",
-        "start_date": "2025-03-01T00:00:00",
-        "end_date": "2025-03-05T00:00:00",
-        "trip_style": "FOOD",   # TripStyle Enum 값
-        "days": [
-            {
-                "day_number": 1,
-                "places": [
-                    {
-                        "place_name": "경복궁",
-                        "place_visit_time": "2025-03-01T10:00:00"
-                    },
-                    {
-                        "place_name": "인사동",
-                        "place_visit_time": "2025-03-01T14:00:00"
-                    }
-                ]
-            },
-            {
-                "day_number": 2,
-                "places": [
-                    {
-                        "place_name": "남산타워",
-                        "place_visit_time": "2025-03-02T11:00:00"
-                    }
-                ]
-            }
-        ]
-    }
-    """
+async def create_plan(req: Annotated[PlanCreate, Body(
+    examples=[
+        {
+            "writer_id": 1,
+            "local_name": "부산",
+            "start_date": "2025-03-01T00:00:00",
+            "end_date": "2025-03-03T00:00:00",
+            "trip_style": "FOOD",  # TripStyle Enum 값
+            "days": [
+                {
+                    "day_number": 1,
+                    "places": [
+                        {
+                            "place_name": "톤쇼우 부산대점",
+                            "place_visit_time": "2025-03-01T10:00:00"
+                        },
+                        {
+                            "place_name": "수수굉 부산대점",
+                            "place_visit_time": "2025-03-01T14:00:00"
+                        }
+                    ]
+                },
+                {
+                    "day_number": 2,
+                    "places": [
+                        {
+                            "place_name": "미가락",
+                            "place_visit_time": "2025-03-02T11:00:00"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+)], session: Session = Depends(get_db_session)):
     # todo: 결과물을 CommonResponse에 담아야 함
-    created_plan_id =  PlanService.create_plan(req, session)
+    created_plan_id = PlanService.create_plan(req, session)
     return {"plan_id": created_plan_id}
 
+
+# 계획 삭제
+@router.delete("")
+async def delete_plan(plan_id: int, user_id: int, session: Session = Depends(get_db_session)):
+    return PlanService.delete_plan(plan_id, user_id, session)

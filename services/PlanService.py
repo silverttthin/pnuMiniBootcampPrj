@@ -48,3 +48,27 @@ def create_plan(plan_data: PlanCreate, session: Session):
     session.refresh(plan)
 
     return plan.id
+
+
+def delete_plan(plan_id, user_id, session):
+    # 1. 계획 가져오기
+    plan = session.get(Plan, plan_id)
+    if not plan:
+        raise HTTPException(status_code=404, detail="삭제하고자 하는 계획이 존재하지 않습니다.")
+
+    # 2. 요청자가 해당 플랜 게시자인지 검증
+    if plan.writer_id != user_id:
+        raise HTTPException(status_code=403, detail="게시자만이 계획을 삭제할 수 있습니다.")
+
+    # 3. 플랜의 각 일자를 순회해 장소들을 삭제하고 일자 삭제
+    days = plan.days
+    for day in days:
+        places = day.places
+        for place in places:
+            session.delete(place)
+        session.delete(day)
+
+    # 4. 플랜 삭제 후 세션 커밋
+    session.delete(plan)
+    session.commit()
+    return {"result": 'ok'}
