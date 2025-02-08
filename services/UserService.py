@@ -41,3 +41,4 @@ class UserService:
                    jwt_token=None)
 
         return res
+
