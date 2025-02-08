@@ -1,3 +1,7 @@
+from urllib.request import Request
+
+from pygments.lexers import templates
+
 from db import get_db_session, create_db
 from models import SignupResp, SigninResp
 from models.User import User
@@ -25,3 +29,11 @@ def auth_signin(user:User,
     res = userService.signin(user,db)
 
     return res
+
+
+@router.post("/logout")
+async def logout():
+    msg = "logout Successful"
+    # response = templates.TemplateResponse("login.html", {"request":request, "msg":msg})
+    # response.delete_cookie(key="access_token")
+    return None
