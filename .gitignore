@@ -21,6 +21,7 @@ site_build
 docs.zip
 archive.zip
 *.db
+.env
 
 # vim temporary files
 *~
