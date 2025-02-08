@@ -22,3 +22,8 @@ class PlanCreate(BaseModel):
     end_date: datetime
     trip_style: TripStyle
     days: List[DayCreate]
+
+
+class PlanDeleteRequest(BaseModel):
+    plan_id: int
+    user_id: int
