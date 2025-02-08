@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-
 import controllers
 from db import create_db
 
@@ -12,3 +11,5 @@ def on_startup():
 
 
 app.include_router(controllers.PlanController.router)
+app.include_router(UserController.router)
+
