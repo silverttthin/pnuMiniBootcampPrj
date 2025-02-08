@@ -12,3 +12,4 @@ class TripStyle(str, Enum):
     FEEL_LIKE_TRIP_SPOT = "여행지 느낌. 물씬"
     SHOPPING = "쇼핑은 열정적으로"
     FOOD = "관광보다 먹방"
+
