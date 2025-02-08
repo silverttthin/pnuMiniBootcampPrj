@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import controllers
+from controllers import UserController
 from db import create_db
 
 app = FastAPI()
