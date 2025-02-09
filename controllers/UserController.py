@@ -1,12 +1,32 @@
-
+from starlette.staticfiles import StaticFiles
+from starlette.templating import Jinja2Templates
+from pathlib import Path
 
 from db import get_db_session, create_db
 from models import SignupResp, SigninResp
 from models.User import User
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, FastAPI, Request
 
 from services.UserService import UserService
+
+app=FastAPI()
+
+app.mount(
+    "/static",
+    StaticFiles(directory=Path(__file__).parent / "static"),
+    name="static"
+)
+
+#Jinja2 템플릿 설정
+templates = Jinja2Templates(directory="templates")
+
 router = APIRouter(prefix="/auth", tags=["Auth"])
+
+# 회원가입 페이지 렌더링 (GET 요청)
+@router.get("/signup")
+def signup_page(request:Request):
+    return templates.TemplateResponse("signup.html", {"request":request})
+
 
 @router.post("/signup")
 def auth_signup(user:User,
