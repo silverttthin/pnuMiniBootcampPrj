@@ -1,10 +1,12 @@
-from typing import Annotated
+from typing import Annotated, List
 
 from fastapi import APIRouter, Depends, Body
 
 from db import get_db_session
 from sqlalchemy.orm import Session
-from requests.plan_schema import PlanCreate, PlanDeleteRequest
+
+from responses import GetMyPlansResponse
+from requests.plan_schema import PlanCreate, PlanDeleteRequest, GetMyPlanListRequest
 from services.PlanService import PlanService
 
 router = APIRouter(prefix="/plans", tags=["Plan"])
@@ -61,3 +63,11 @@ async def create_plan(req: Annotated[PlanCreate, Body(
 @router.delete("")
 async def delete_plan(req: PlanDeleteRequest, planService: PlanService = Depends(get_plan_service)):
     return planService.delete_plan(req)
+
+
+# 내가 작성한 게획 리스트 가져오기
+@router.post("/list")
+async def get_my_plans(req: GetMyPlanListRequest,
+                       planService: PlanService = Depends(get_plan_service)):
+    plans = planService.get_my_plans(req)
+    return plans

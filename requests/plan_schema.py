@@ -27,3 +27,7 @@ class PlanCreate(BaseModel):
 class PlanDeleteRequest(BaseModel):
     plan_id: int
     user_id: int
+
+
+class GetMyPlanListRequest(BaseModel):
+    user_id: int
