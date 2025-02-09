@@ -9,13 +9,6 @@ from fastapi import APIRouter, Depends, FastAPI, Request
 
 from services.UserService import UserService
 
-app=FastAPI()
-
-app.mount(
-    "/static",
-    StaticFiles(directory=Path(__file__).parent / "static"),
-    name="static"
-)
 
 #Jinja2 템플릿 설정
 templates = Jinja2Templates(directory="templates")
