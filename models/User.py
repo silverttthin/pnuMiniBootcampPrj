@@ -25,3 +25,4 @@ class SigninResp(BaseModel):
     jwt_token:str|None=None
     err_msg:str|None=None
     http_code:int|None=None
+

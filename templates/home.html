@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>솔로 여행 플래너</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>혼자 여행하는 당신을 위한 플랜 작성</h1>
+    </header>
+
+    <main>
+        <section class="planner">
+            <h2>여행 플랜을 만들어 보세요</h2>
+            <label for="destination">여행지:</label>
+            <input type="text" id="destination" placeholder="예: 제주도">
+
+            <label for="start-date">출발일:</label>
+            <input type="date" id="start-date">
+
+            <label for="end-date">귀국일:</label>
+            <input type="date" id="end-date">
+
+            <button onclick="generatePlan()">플랜 생성</button>
+        </section>
+
+        <section id="output" class="hidden">
+            <h2>여행 플랜</h2>
+            <p id="plan-details"></p>
+        </section>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

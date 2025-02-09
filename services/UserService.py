@@ -8,19 +8,28 @@ from models import User, SignupResp, SigninResp
 
 class UserService:
     def signup(self, user:User, db) -> SignupResp:
+        # 1. ID 중복 확인
+        existing_user = db.query(User).filter(User.login_id == user.login_id).first()
+        if existing_user:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail = "이미 사용 중인 아이디입니다."
+            )
 
+        # 2. 새로운 사용자 생성
         user=User(
             login_id = user.login_id,
             password = user.password,
             name = user.name
         )
 
+        # 3. DB에 저장
         db.add(user)
         db.commit()
-        res = SignupResp(http_code=200,
-                         err_msg=None)
+        db.refresh(user)
 
-        return res
+        return SignupResp(http_code=200,
+                         err_msg=None)
 
 
     def signin(self, user:User, db):
