@@ -1,7 +1,12 @@
+from typing import List
+
 from fastapi import HTTPException
 from models import User, Plan, Day, Place
 from requests.plan_schema import PlanCreate
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
+from sqlalchemy import select
+
+from responses.GetMyPlansResponse import PlaceResponse, PlanResponse, DayResponse
 
 
 class PlanService:
@@ -35,7 +40,7 @@ class PlanService:
             )
             self.session.add(day)
             self.session.commit()
-            self.session.refresh(day) # 요청 places에 fk로 넣기위해 PK 가져오는 용도
+            self.session.refresh(day)  # 요청 places에 fk로 넣기위해 PK 가져오는 용도
 
             # 하나의 Day마다 여러개 들어가는 Place 정보 매핑
             for place_data in day_data.places:
@@ -53,7 +58,7 @@ class PlanService:
 
         return plan.id
 
-
+    # 계획 삭제 API
     def delete_plan(self, req):
         # 1. 계획 가져오기
         plan = self.session.get(Plan, req.plan_id)
@@ -76,3 +81,31 @@ class PlanService:
         self.session.delete(plan)
         self.session.commit()
         return {"result": 'ok'}
+
+    # 내가 작성한 계획들 가져오기
+    def get_my_plans(self, req):
+        # # 사용자 계획 조회 (Eager Loading 적용)
+        plans = self.session.query(Plan).options(
+            joinedload(Plan.days).joinedload(Day.places)
+        ).filter(Plan.writer_id == req.user_id).order_by(Plan.start_date.desc()).all()
+
+        result = []
+        for plan in plans:
+            days_response = []
+            for day in plan.days:
+                placeResList = [PlaceResponse( place_name=place.place_name, place_visit_time=place.place_visit_time)
+                          for place in day.places]
+                days_response.append(DayResponse(day_number=day.day_number, places=placeResList))
+
+            plan_response = PlanResponse(
+                id=plan.id,
+                writer_id=plan.writer_id,
+                local_name=plan.local_name,
+                start_date=plan.start_date,
+                end_date=plan.end_date,
+                trip_style=plan.trip_style.value,
+                days=days_response,
+            )
+            result.append(plan_response)
+
+        return result
