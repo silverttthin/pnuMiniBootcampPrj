@@ -2,7 +2,7 @@
 from jose import jwt
 from datetime import datetime, timedelta, timezone
 
-SECRET_KEY ="cf2abc207680ba85bc9ce0e587183225"
+SECRET_KEY ="1d3f771294d5db71de6b112f25d5e774"
 ALG = "HS256"
 
 class JWTUtil:
