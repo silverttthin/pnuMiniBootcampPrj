@@ -1,11 +1,10 @@
-from typing import Annotated, List
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, Body
 
-from db import get_db_session
+from dependencies.db import get_db_session
 from sqlalchemy.orm import Session
 
-from responses import GetMyPlansResponse
 from requests.plan_schema import PlanCreate, PlanDeleteRequest, GetMyPlanListRequest
 from services.PlanService import PlanService
 

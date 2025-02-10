@@ -11,18 +11,8 @@ class User(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     login_id: str = Field(index=True, unique=True)
     password: str
-    name: Union[str,None] = None
+    name: Union[str, None] = None
+    access_token: str | None = None
+    created_at: int | None = Field(index=True)
 
     plans: List["Plan"] = Relationship()
-
-
-class SignupResp(BaseModel):
-    err_msg:str|None=None
-    http_code:int|None=None
-
-
-class SigninResp(BaseModel):
-    jwt_token:str|None=None
-    err_msg:str|None=None
-    http_code:int|None=None
-
