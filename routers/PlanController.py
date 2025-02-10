@@ -1,14 +1,17 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Body
+from fastapi import APIRouter, Depends, Body, Request
+from fastapi.responses import HTMLResponse
 
 from dependencies.db import get_db_session
 from sqlalchemy.orm import Session
+from starlette.templating import Jinja2Templates
 
 from requests.plan_schema import PlanCreate, PlanDeleteRequest, GetMyPlanListRequest
 from services.PlanService import PlanService
 
 router = APIRouter(prefix="/plans", tags=["Plan"])
+templates = Jinja2Templates(directory="templates")
 
 
 # 세션을 주입받은 서비스 인스턴스 생성
@@ -70,3 +73,24 @@ async def get_my_plans(req: GetMyPlanListRequest,
                        planService: PlanService = Depends(get_plan_service)):
     plans = planService.get_my_plans(req)
     return plans
+
+
+# 플랜 작성 및 목록 페이지 라우팅
+@router.get("/page", response_class=HTMLResponse)
+async def read_plan_page(request: Request, planService: PlanService = Depends(get_plan_service)):
+    # todo: JWT token 받아 decoding 하기
+    user_id: int = 1
+    user_name: str = "이시웅"
+    plans = planService.get_my_plans(
+        GetMyPlanListRequest(user_id=user_id)
+    )
+
+    return templates.TemplateResponse(
+        request=request, name="plan.html", context={
+            "plans": plans,
+            "user": {
+                "user_id": user_id,
+                "user_name": user_name,
+            }
+        }
+    )
