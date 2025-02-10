@@ -1,7 +1,7 @@
 ﻿#chatbot 클래스 구현
 
-from dependencies import get_openai_client
-from config import OPENAI_MODEL
+from dependencies.chat_utils import get_openai_client
+from dependencies.config import OPENAI_MODEL
 
 class Chatbot:
     def __init__(self):

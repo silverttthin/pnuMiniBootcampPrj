@@ -3,10 +3,9 @@ from starlette.templating import Jinja2Templates
 from fastapi import FastAPI, Request
 from pathlib import Path
 
-import controllers
-from routers import ChatbotHandlers
-from controllers import UserController
-from db import create_db
+from routers import ChatbotHandlers, PlanController
+from routers import UserController
+from dependencies.db import create_db
 
 app = FastAPI()
 
@@ -29,6 +28,6 @@ app.include_router(ChatbotHandlers.router)
 def on_startup():
     create_db()
 
-app.include_router(controllers.PlanController.router)
+app.include_router(PlanController.router)
 app.include_router(UserController.router)
 

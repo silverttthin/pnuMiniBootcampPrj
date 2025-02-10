@@ -1,7 +1,7 @@
 ﻿#OpenAI 서비스 로직
 
 from dependencies import get_openai_client
-from config import OPENAI_MODEL
+from dependencies.config import OPENAI_MODEL
 
 def chat_with_openai(context):
     """OpenAI API에 context를 전송하고 응답을 반환"""
