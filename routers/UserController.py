@@ -1,3 +1,4 @@
+from sqlmodel import Session
 from starlette.templating import Jinja2Templates
 
 from dependencies.db import get_db_session
@@ -21,17 +22,27 @@ def signup_page(request:Request):
 
 @router.post('/signup')
 def auth_signup(req: AuthSignupReq,
-                db = Depends(get_db_session),  # 함수
+                db = Depends(get_db_session),
                 jwtUtil:JWTUtil=Depends(),     # 클래스
                 auth_service:UserService=Depends()):
     user = auth_service.signup(db, req.login_id, req.pwd, req.name)
     if not user:
         raise HTTPException(status_code=400,
-                      detail="잘못되었다")
+                      detail="회원가입실패")
 
-    user.access_token = jwtUtil.create_token(user.model_dump())
+    # 2. 회원가입 후 JWT 토큰 발급
+    # 예시로 user 정보를 그대로 토큰에 담습니다.
+    access_token = jwtUtil.create_token(user.model_dump())
 
-    return user
+    # 3. 발급된 토큰을 DB에 저장
+    user.access_token = access_token
+    db.commit()  # 변경사항 저장
+    db.refresh(user)
+
+    return {
+        "jwt_token" :user.access_token,
+        "err_msg": "회원가입 성공"
+    }
 
 # 2. signin
 @router.post('/signin')
@@ -44,7 +55,11 @@ def auth_signin(req: AuthSigninReq,
         raise HTTPException(status_code=401, detail="로그인 실패")
 
     user.access_token = jwtUtil.create_token(user.model_dump())
-    return user
+
+    return {
+        "jwt_token" :user.access_token,
+        "err_msg": "로그인 성공"
+    }
 
 
 

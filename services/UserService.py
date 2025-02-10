@@ -15,7 +15,7 @@ class UserService:
         return bcrypt.hashpw(encoded_pwd, salt)
 
     # 2. password 검증
-    # 로그인 -> password 암호화 -> DB 암호화 패스워드 == 사용자 입력 암호화 패스워드4
+    # 로그인 -> password 암호화 -> DB 암호화 패스워드 == 사용자 입력 암호화 패스워드
     def verify_pwd(self, pwd: str, hpwd: str) -> bool:
         encoded_pwd = pwd.encode('utf-8')
         return bcrypt.checkpw(password=encoded_pwd, hashed_password=hpwd)
@@ -27,7 +27,7 @@ class UserService:
     def signup(self, db:Session, login_id: str, pwd: str, name: str ) -> User|None:
         try:
             hashed_pwd = self.get_hashed_pwd(pwd)
-            user = User(login_id=login_id, pwd=hashed_pwd, name=name)
+            user = User(login_id=login_id, password=hashed_pwd, name=name)
             user.created_at = int(time.time())
 
             db.add(user)
@@ -52,10 +52,11 @@ class UserService:
     # DB에 저장된 패스워드와 일치하는지 (2)번 함수로 검사한다.
     def signin(self, db: Session, login_id: str, pwd: str) -> User | None:
         dbUser = self.get_user_by_name(db, login_id)
+
         if not dbUser:
             return None
 
-        if not self.verify_pwd(pwd, dbUser.pwd):
+        if not self.verify_pwd(pwd, dbUser.password):
             return None
 
         return dbUser
