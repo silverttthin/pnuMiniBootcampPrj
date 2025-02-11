@@ -32,7 +32,7 @@ def auth_signup(req: AuthSignupReq, db=Depends(get_db_session),
     jwt_token = jwtUtil.create_token(
         {
             "id": user.id,
-            "username": user.name,
+            "user_name": user.name,
             "created_at": user.created_at,
         }
     )
