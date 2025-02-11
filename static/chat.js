@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = new URLSearchParams();
         formData.append("user_input", message);
 
-        fetch("/v1/chat/message", {
+        fetch("/message", { ///v1/chat
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",

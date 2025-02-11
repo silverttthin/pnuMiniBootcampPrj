@@ -1,7 +1,14 @@
-﻿from fastapi import APIRouter, Depends, Form
+﻿from fastapi import APIRouter, Depends, Form, Request
+from starlette.templating import Jinja2Templates
+
 from models.chatbot import Chatbot
 
-router = APIRouter(prefix="/v1/chat")
+templates = Jinja2Templates(directory="templates")
+router = APIRouter() 
+
+@router.get("/chatbot")
+async def chat_page(request: Request):
+    return templates.TemplateResponse("chat.html", {"request": request})
 
 @router.post("/message")
 async def chat(
