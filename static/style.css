@@ -1,4 +1,101 @@
-﻿.chat-container {
+﻿/* 전체 페이지 기본 스타일 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 헤더 스타일 */
+header {
+    background-color: #0078ff;
+    color: white;
+    padding: 20px;
+    font-size: 1.5em;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 컨테이너 (로그인, 회원가입, 플래너) */
+.container, .planner, .login-container {
+    background: white;
+    padding: 25px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* 입력 필드 스타일 */
+input, button {
+    display: block;
+    width: calc(100% - 20px);
+    margin: 12px auto;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+/* 버튼 스타일 */
+button {
+    background-color: #0078ff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #005ecb;
+}
+
+/* 링크 버튼 스타일 */
+.auth-buttons a {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #0078ff;
+    border-radius: 8px;
+    text-decoration: none;
+    margin: 10px 0;
+    transition: background 0.3s;
+}
+
+.auth-buttons a:hover {
+    background: #005ecb;
+}
+
+/* 여행 계획 박스 */
+#plan-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+/* 미디어쿼리 - 반응형 */
+@media (max-width: 600px) {
+    .container, .planner, .login-container {
+        width: 95%;
+    }
+}
+
+
+.chat-container {
     width: 400px;
     margin: 20px auto;
     background: white;
