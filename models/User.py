@@ -12,7 +12,6 @@ class User(SQLModel, table=True):
     login_id: str = Field(index=True, unique=True)
     password: str = Field(exclude=True)
     name: Union[str, None] = None
-    access_token: str | None = None
     created_at: int | None = Field(index=True)
 
     plans: List["Plan"] = Relationship()
