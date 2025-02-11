@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>GPT 챗봇</title>
+    <!-- 스타일 연결 -->
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <header>
+        <h1>GPT 챗봇</h1>
+    </header>
+
+    <main>
+        <section class="chat-container">
+            <div id="chat-box">
+                <!-- 초기에 봇의 안내 메시지 하나 포함 -->
+                <div class="chat-message bot">안녕하세요! 무엇을 도와드릴까요?</div>
+            </div>
+
+            <div class="chat-input-container">
+                <!-- 메시지 입력 필드 -->
+                <input type="text" id="user-input" placeholder="메시지를 입력하세요..." />
+                <!-- 전송 버튼 -->
+                <button id="send-button">전송</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- script를 body 맨 아래에서 로드하거나, defer를 사용 -->
+    <script src="/static/chat.js"></script>
+</body>
+</html>

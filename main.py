@@ -22,11 +22,16 @@ async def read_root(request: Request):
     return templates.TemplateResponse(
         'home.html', {"request": request})
 
+@app.get("/chat")
+async def chat_page(request: Request):
+    return templates.TemplateResponse("chat.html", {"request": request})
+
 app.include_router(ChatbotHandlers.router)
 
 @app.on_event("startup")
 def on_startup():
     create_db()
+
 
 app.include_router(PlanController.router)
 app.include_router(UserController.router)

@@ -58,3 +58,7 @@ document.getElementById("signup-form").addEventListener("submit", function(event
         document.getElementById("message").innerText = "가입 중 오류가 발생했습니다.";
     });
 });
+
+
+
+
