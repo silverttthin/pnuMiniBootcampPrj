@@ -149,3 +149,13 @@ button:hover {
     border: none;
     cursor: pointer;
 }
+
+ .user-info {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+        }
