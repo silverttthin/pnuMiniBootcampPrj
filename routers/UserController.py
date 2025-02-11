@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, Request, HTTPException, Response
 
 from services.UserService import UserService
 
-#Jinja2 템플릿 설정
+# Jinja2 템플릿 설정
 templates = Jinja2Templates(directory="templates")
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
@@ -52,6 +52,7 @@ def auth_signin(req: AuthSigninReq, response: Response, db=Depends(get_db_sessio
 
     # 브라우저 쿠키에 토큰값 저장
     response.set_cookie(key="jwt_token", value=jwt_token)
+
 
     return {
         "jwt_token": jwt_token,

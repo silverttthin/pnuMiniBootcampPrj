@@ -1,7 +1,6 @@
 // 폼 제출 이벤트 리스너 등록
 document.getElementById('signup-form').addEventListener('submit', async (e) => {
     e.preventDefault(); // 폼 기본 제출 동작 방지
-
     // 입력값 가져오기
     const loginId = document.getElementById('login_id').value;
     const password = document.getElementById('password').value;
@@ -16,13 +15,14 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
             },
             body: JSON.stringify({
                 login_id: loginId,
-                pwd: password, // 백엔드에서 pwd로 받음
+                password: password, // 백엔드에서 pwd로 받음
                 name: name
             })
         });
 
         // 응답 처리
         const result = await response.json();
+        console.log(result)
         if (response.ok) {
             // 회원가입 성공 시 http://127.0.0.1:8000/ 로 리다이렉트
             window.location.href = "http://localhost:8000/";
