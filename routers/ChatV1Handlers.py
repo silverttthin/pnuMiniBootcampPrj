@@ -1,4 +1,4 @@
-﻿﻿from fastapi import APIRouter
+﻿from fastapi import APIRouter
 import openai
 import os
 from dotenv import load_dotenv
