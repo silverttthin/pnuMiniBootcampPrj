@@ -143,10 +143,13 @@ document.getElementById('plan-form').addEventListener('submit', async function(e
                 `;
         });
         planItem.innerHTML = `
-                <h3>${planData.local_name} (${planData.start_date} ~ ${planData.end_date})</h3>
-                <p>스타일: ${planData.trip_style}</p>
-                ${daysHtml}
-            `;
+        <h3>${planData.local_name} (${planData.start_date} ~ ${planData.end_date})</h3>
+        <p>스타일: ${planData.trip_style}</p>
+        ${daysHtml}
+        <input class="delete-plan-btn" type="button" value="계획 삭제">
+        `;
+        // responseData에서 plan_id를 받아와서 설정
+        planItem.setAttribute('data-plan-id', responseData.plan_id);
 
         // "작성된 계획이 없습니다." 메시지가 있다면 제거
         const noPlansMessage = planList.querySelector('p');
