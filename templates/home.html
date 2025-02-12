@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>솔로 여행 플래너</title>
+    <link rel="stylesheet" href="/static/home.css">
+    <link rel="stylesheet" href="/static/chat.css">
+</head>
+<body>
+    <div class="background-container"></div>
+    <!-- 네비게이션 바 -->
+    <header>
+        <div id="logo">TEMU TRIPLE</div>
+        <div id="menu-toggle">☰</div>
+    </header>
+
+    <!-- 사이드 네비게이션 메뉴 -->
+    <nav id="side-menu">
+        <div id="close-menu">✖</div>
+
+    <!-- 로그인 폼 -->
+    <div id="loginContainer">
+        <h2>로그인 / 회원가입</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">아이디</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="로그인">
+            </div>
+            <div id="signupButton">
+                <a href="/auth/signup/page">회원가입</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- 로그인 후 표시될 메뉴 -->
+    <div id="userActions" style="display: none;">
+        <div id="tokenDisplay"></div>
+        <button id="logoutBtn" class="btn">로그아웃</button>
+        <a href="/plans/page" class="btn">내 계획 보기 / 생성</a>
+    </div>
+
+    </nav>
+
+    <!-- 메인 콘텐츠 -->
+    <main>
+        <div class="main-text">나를 아는 여행 앱<br>트리플 스타일</div>
+        <div class="sub-text">계획부터 예약까지, 여행이 쉬워지는 새로운 경험</div>
+
+    </main>
+     <!-- ✅ 챗봇 버튼 -->
+     <button id="chatbot-button">💬</button>
+
+     <!-- ✅ 챗봇 모달 창 -->
+     <div id="chatbot-modal">
+         <div class="chatbot-header">
+             <span>GPT 챗봇</span>
+             <button id="close-chatbot">&times;</button>
+         </div>
+         <div class="chat-container">
+             <div id="chat-box">
+                 <div class="chat-message bot">안녕하세요! 무엇을 도와드릴까요?</div>
+             </div>
+             <div class="chat-input-container">
+                 <input type="text" id="user-input" placeholder="메시지를 입력하세요..." />
+                 <button id="send-button">전송</button>
+             </div>
+         </div>
+     </div>
+ 
+<script src="/static/home.js"></script>
+<script src="/static/chat.js"></script>
+</body>
+</html>

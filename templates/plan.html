@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Plan</title>
+    <style>
+        /* 레이아웃 구성을 위한 CSS */
+        body {
+            display: flex;
+            flex-direction: row; /* 좌우 배치 */
+            align-items: flex-start; /* 상단 정렬 */
+        }
+        /* 두 섹션이 동일한 공간을 차지하도록 설정 */
+        #plan-creation,
+        #plan-list {
+            flex: 1;
+        }
+    </style>
+    <link rel="stylesheet" href="/static/plan.css">
+    <link rel="stylesheet" href="/static/chat.css">
+</head>
+<body>
+<div id="plan-container">
+<!--Plan 작성 섹션 -->
+<div id="plan-creation">
+    <header>
+        <a href="/" id="logo">Temu Triple</a>
+    </header>
+    <h2>New Travel Plan</h2>
+    <!-- action 속성 없이 JS로 처리 -->
+    <form id="plan-form">
+        <input type="hidden" name="writer_id" value={{user.user_id}}>
+
+        <!-- 지역명 입력 필드 -->
+        <div>
+            <label>지역명:</label>
+            <input type="text" name="local_name" required>
+        </div>
+
+        <!-- 여행 기간 입력 필드 -->
+        <div>
+            <label>시작일:</label>
+            <input type="datetime-local" name="start_date" required>
+        </div>
+        <div>
+            <label>종료일:</label>
+            <input type="datetime-local" name="end_date" required>
+        </div>
+
+        <!-- 여행 스타일 선택 필드 (TripStyle Enum의 값으로 맞춤) -->
+        <div>
+            <label>여행 스타일:</label>
+            <select name="trip_style" required>
+                <option value="체험/액티비티">체험/액티비티</option>
+                <option value="SNS 핫플레이스">SNS 핫플레이스</option>
+                <option value="자연과 함께">자연과 함께</option>
+                <option value="유명 관광지는 필수">유명 관광지는 필수</option>
+                <option value="여유롭게 힐링">여유롭게 힐링</option>
+                <option value="문화/예술/역사">문화/예술/역사</option>
+                <option value="여행지 느낌. 물씬">여행지 느낌. 물씬</option>
+                <option value="쇼핑은 열정적으로">쇼핑은 열정적으로</option>
+                <option value="관광보다 먹방">관광보다 먹방</option>
+            </select>
+        </div>
+
+        <!-- Day 컨테이너 -->
+        <div id="days-container">
+            <div class="day" data-day-index="0">
+                <h3>Day 1</h3>
+                <div class="places-container">
+                    <div class="place">
+                        <input type="text" placeholder="장소명" required>
+                        <input type="datetime-local" required>
+                    </div>
+                </div>
+                <button type="button" class="add-place">장소 추가</button>
+            </div>
+        </div>
+        <button type="button" id="add-day">Day 추가</button>
+        <button type="submit">계획 저장</button>
+    </form>
+</div>
+
+<!-- Plan 리스트 섹션 -->
+<div id="plan-list">
+    <h2>My Plans</h2>
+    {% for plan in plans %}
+    <div class="plan-item" data-plan-id="{{plan.id}}">
+        <h3>{{ plan.local_name }} ({{ plan.start_date }} ~ {{ plan.end_date }})</h3>
+        <p>스타일: {{ plan.trip_style }}</p>
+        {% for day in plan.days %}
+        <div class="day">
+            <h4>Day {{ day.day_number }}</h4>
+            <ul>
+                {% for place in day.places %}
+                <li>{{ place.place_name }} - {{ place.place_visit_time }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+        <input class="delete-plan-btn" type="button" value="계획 삭제" >
+
+    </div>
+    {% else %}
+    <p>작성된 계획이 없습니다.</p>
+    {% endfor %}
+</div>
+</div>
+<!-- ✅ 챗봇 버튼 -->
+<button id="chatbot-button">💬</button>
+
+<!-- ✅ 챗봇 모달 창 -->
+<div id="chatbot-modal">
+    <div class="chatbot-header">
+        <span>GPT 챗봇</span>
+        <button id="close-chatbot">&times;</button>
+    </div>
+    <div class="chat-container">
+        <div id="chat-box">
+            <div class="chat-message bot">안녕하세요! 무엇을 도와드릴까요?</div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="user-input" placeholder="메시지를 입력하세요..." />
+            <button id="send-button">전송</button>
+        </div>
+    </div>
+</div>
+
+<script src="/static/plan.js"></script>
+<script src="/static/chat.js"></script>
+</body>
+</html>

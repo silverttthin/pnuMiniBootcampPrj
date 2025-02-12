@@ -20,6 +20,10 @@ site_build
 .venv
 docs.zip
 archive.zip
+*.db
+.env
+.dockerignore
+Dockerfile
 
 # vim temporary files
 *~
