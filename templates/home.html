@@ -4,26 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>솔로 여행 플래너</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/home.css">
+    <link rel="stylesheet" href="/static/chat.css">
 </head>
 <body>
+    <div class="background-container"></div>
+    <!-- 네비게이션 바 -->
     <header>
-        <h1>혼자 여행하는 당신을 위한 플랜 작성</h1>
+        <div id="logo">TRIPLE</div>
+        <div id="menu-toggle">☰</div>
     </header>
 
-    <main>
-        <section class="planner">
-            <h2>쉽고 빠르게 혼자 여행을 계획하세요!</h2>
-            <p>여행을 계획하고 공유하는 최고의 솔루션! 혼자 여행을 더욱 특별하게 만드세요.</p>
-        </section>
-<!-- 
-        <section id="output" class="hidden">
-            <h2>여행 플랜</h2>
-            <p id="plan-details"></p>
-        </section> -->
+    <!-- 사이드 네비게이션 메뉴 -->
+    <nav id="side-menu">
+        <div id="close-menu">✖</div>
 
-    <div class="login-container" id="loginContainer">
-        <h2>로그인</h2>
+    <!-- 로그인 폼 -->
+    <div id="loginContainer">
+        <h2>로그인 / 회원가입</h2>
         <form id="loginForm">
             <div class="form-group">
                 <label for="username">아이디</label>
@@ -39,19 +37,45 @@
             <div id="signupButton">
                 <a href="/auth/signup/page">회원가입</a>
             </div>
-            <!-- 로그아웃 버튼 -->
-    <div id="logoutButton" style="display: none;">
-        <button id="logoutBtn">로그아웃</button>
-    </div>
         </form>
     </div>
 
-      <!-- JWT 토큰을 표시할 영역 -->
-    <div id="tokenDisplay"></div>
+    <!-- 로그인 후 표시될 메뉴 -->
+    <div id="userActions" style="display: none;">
+        <div id="tokenDisplay"></div>
+        <button id="logoutBtn" class="btn">로그아웃</button>
+        <a href="/plans/page" class="btn">내 계획 보기 / 생성</a>
+    </div>
 
-    
-        </main>
-   <script src="/static/signin.js"></script>
+    </nav>
 
+    <!-- 메인 콘텐츠 -->
+    <main>
+        <div class="main-text">나를 아는 여행 앱<br>트리플 스타일</div>
+        <div class="sub-text">계획부터 예약까지, 여행이 쉬워지는 새로운 경험</div>
+
+    </main>
+     <!-- ✅ 챗봇 버튼 -->
+     <button id="chatbot-button">💬</button>
+
+     <!-- ✅ 챗봇 모달 창 -->
+     <div id="chatbot-modal">
+         <div class="chatbot-header">
+             <span>GPT 챗봇</span>
+             <button id="close-chatbot">&times;</button>
+         </div>
+         <div class="chat-container">
+             <div id="chat-box">
+                 <div class="chat-message bot">안녕하세요! 무엇을 도와드릴까요?</div>
+             </div>
+             <div class="chat-input-container">
+                 <input type="text" id="user-input" placeholder="메시지를 입력하세요..." />
+                 <button id="send-button">전송</button>
+             </div>
+         </div>
+     </div>
+ 
+<script src="/static/home.js"></script>
+<script src="/static/chat.js"></script>
 </body>
 </html>

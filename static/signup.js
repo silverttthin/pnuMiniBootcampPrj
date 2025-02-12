@@ -25,6 +25,7 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
         console.log(result)
         if (response.ok) {
             // 회원가입 성공 시 http://127.0.0.1:8000/ 로 리다이렉트
+            alert("✅ 회원가입을 축하드립니다!🥳");
             window.location.href = "http://localhost:8000/";
         } else {
             document.getElementById('message').textContent = `회원가입 실패: ${result.error || '알 수 없는 오류'}`;

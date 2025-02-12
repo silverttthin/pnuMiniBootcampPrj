@@ -1,0 +1,159 @@
+﻿/* ✅ 좌측 하단 챗봇 버튼 */
+#chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #0084ff, #00aaff);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+#chatbot-button:hover {
+    background: linear-gradient(135deg, #004f9f, #0084ff);
+    transform: scale(1.1);
+}
+
+/* ✅ 챗봇 모달 창 */
+#chatbot-modal {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    width: 350px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* ✅ 챗봇 모달 헤더 */
+.chatbot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    color: white;
+    padding: 10px;
+}
+
+/* ✅ 챗봇 닫기 버튼 */
+#close-chatbot {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+}
+
+/* ✅ 전체 채팅 박스 스타일 */
+.chat-container {
+    width: 400px;
+    margin: 20px auto;
+    background: rgba(0, 0, 0, 0.6); /* ✅ 반투명 블랙 배경 */
+    backdrop-filter: blur(10px); /* ✅ 블러 효과 추가 */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* ✅ 채팅 메시지 영역 */
+#chat-box {
+    height: 300px;
+    overflow-y: auto;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ✅ 사용자 및 봇 메시지 스타일 */
+.chat-message {
+    padding: 12px;
+    margin: 8px;
+    border-radius: 12px;
+    max-width: 75%;
+    word-break: break-word;
+    font-size: 1.1em;
+}
+
+/* ✅ 사용자 메시지 스타일 (우측 정렬) */
+.chat-message.user {
+    background: linear-gradient(135deg, #0084ff, #00aaff);
+    color: white;
+    align-self: flex-end;
+    text-align: right;
+    border-top-right-radius: 2px;
+}
+
+/* ✅ 챗봇 메시지 스타일 (좌측 정렬) */
+.chat-message.bot {
+    background: rgba(255, 255, 255, 0.2); /* ✅ 반투명 화이트 */
+    color: white;
+    align-self: flex-start;
+    border-top-left-radius: 2px;
+}
+
+/* ✅ 채팅 입력 컨테이너 */
+.chat-input-container {
+    display: flex;
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* ✅ 입력 필드 스타일 */
+.chat-input-container input {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    font-size: 1.1em;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* ✅ 입력 필드 Placeholder 스타일 */
+.chat-input-container input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ✅ 전송 버튼 스타일 */
+.chat-input-container button {
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #0084ff, #00aaff);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease-in-out;
+    border-radius: 0 10px 10px 0;
+}
+
+/* ✅ 버튼 호버 효과 */
+.chat-input-container button:hover {
+    background: linear-gradient(135deg, #004f9f, #0084ff);
+    transform: scale(1.05);
+}
+
+/* ✅ 모바일 반응형 */
+@media (max-width: 600px) {
+    .chat-container {
+        width: 90%;
+    }
+    .chat-message {
+        font-size: 1em;
+    }
+    .chat-input-container input, 
+    .chat-input-container button {
+        font-size: 1em;
+    }
+}

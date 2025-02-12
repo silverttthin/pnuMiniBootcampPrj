@@ -6,9 +6,9 @@ from models.chatbot import Chatbot
 templates = Jinja2Templates(directory="templates")
 router = APIRouter() 
 
-@router.get("/chatbot")
-async def chat_page(request: Request):
-    return templates.TemplateResponse("chat.html", {"request": request})
+# @router.get("/chatbot")
+# async def chat_page(request: Request):
+#     return templates.TemplateResponse("chat.html", {"request": request})
 
 @router.post("/message")
 async def chat(

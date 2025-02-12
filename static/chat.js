@@ -6,15 +6,30 @@
 // 사용자가 Enter 키를 누르면 메시지 전송
 document.addEventListener("DOMContentLoaded", () => {
     // 현재 페이지 경로 확인
-    const currentPage = window.location.pathname;
-    console.log("현재 페이지:", currentPage);
+    const chatbotButton = document.getElementById("chatbot-button");
+    const chatbotModal = document.getElementById("chatbot-modal");
+    const closeChatbot = document.getElementById("close-chatbot");
+
+    // ✅ 챗봇 버튼 클릭 시 모달 열기
+    chatbotButton.addEventListener("click", () => {
+        chatbotModal.style.display = "block";
+    });
+
+    // ✅ 닫기 버튼 클릭 시 모달 닫기
+    closeChatbot.addEventListener("click", () => {
+        chatbotModal.style.display = "none";
+    });
+
+
+    // const currentPage = window.location.pathname;
+    // console.log("현재 페이지:", currentPage);
 
     
-    // /chat 또는 /chat/ 로 시작하는지 확인
-    if (!currentPage.startsWith("/chat")) {
-        console.log("이 페이지는 /chat이 아니므로 채팅 기능을 로드하지 않음");
-        return;
-    }
+    // // /chat 또는 /chat/ 로 시작하는지 확인
+    // if (!currentPage.startsWith("/chat")) {
+    //     console.log("이 페이지는 /chat이 아니므로 채팅 기능을 로드하지 않음");
+    //     return;
+    // }
 
     console.log("Chatbot script loaded!");
 
