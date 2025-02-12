@@ -6,10 +6,6 @@ from models.chatbot import Chatbot
 templates = Jinja2Templates(directory="templates")
 router = APIRouter() 
 
-# @router.get("/chatbot")
-# async def chat_page(request: Request):
-#     return templates.TemplateResponse("chat.html", {"request": request})
-
 @router.post("/message")
 async def chat(
     user_input: str = Form(...),  # 폼(Form)으로부터 문자열 하나 받기
