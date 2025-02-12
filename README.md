@@ -2,7 +2,7 @@
 ## 여행 플랜 서비스 트리플 벤치마킹 서비스
 - 해당 서비스는 혼자 여행하는 사람들이 손쉽게 여행 플랜을 생성할 수 있는 기능을 제공하는 서비스입니다.
 
-<img src="https://github.com/silverttthin/pnuMiniBootcampPrj/issues/31#issue-2847449958">
+<img src="![Image](https://github.com/user-attachments/assets/6481d974-c349-48dd-9231-1802f3285793)">
 
 -----
 ## 개발환경
