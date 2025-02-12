@@ -1,0 +1,130 @@
+﻿/* ✅ 전체 스타일 설정 */
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #ffffff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ✅ 헤더 스타일 */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+/* ✅ "Temu Triple" 로고 */
+#logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+}
+/* ✅ 여행 계획 전체 컨테이너를 가로 배치 */
+#plan-container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    gap: 20px; /* 두 개의 섹션 사이 간격 */
+}
+
+/* ✅ 좌우 각각 50% 너비 설정 */
+#plan-creation, #plan-list {
+    flex: 1; /* 동일한 너비를 가지도록 설정 */
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ✅ 제목 스타일 */
+h2 {
+    text-align: center;
+    font-size: 1.8em;
+}
+
+/* ✅ 입력 필드 스타일 */
+input, select, button {
+    width: 50%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+/* ✅ 버튼 스타일 */
+button {
+    background: linear-gradient(135deg, #0084ff, #00aaff);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #004f9f, #0084ff);
+    transform: scale(1.05);
+}
+
+/* ✅ 여행 스타일 선택 */
+select {
+    appearance: none;
+    background: white;
+    cursor: pointer;
+}
+
+/* ✅ My Plans 영역 스타일 */
+.plan-item {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+}
+
+.plan-item h3 {
+    color: #0084ff;
+}
+
+/* ✅ 삭제 버튼 */
+.delete-plan-btn {
+    background: red;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.delete-plan-btn:hover {
+    background: darkred;
+    transform: scale(1.05);
+}
+
+
+/* ✅ 반응형 스타일 */
+@media (max-width: 600px) {
+    body {
+        flex-direction: column;
+    }
+
+    #plan-creation, #plan-list {
+        width: 95%;
+    }
+
+}
