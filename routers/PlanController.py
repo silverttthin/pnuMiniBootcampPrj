@@ -1,4 +1,4 @@
-from typing import Annotated
+﻿from typing import Annotated
 
 from fastapi import APIRouter, Depends, Body, Request, HTTPException
 from fastapi.responses import HTMLResponse
@@ -69,8 +69,7 @@ async def delete_plan(req: PlanDeleteRequest, planService: PlanService = Depends
 
 # 내가 작성한 게획 리스트 가져오기
 @router.post("/list")
-async def get_my_plans(req: GetMyPlanListRequest, userService: UserService = Depends(),
-                       planService: PlanService = Depends(get_plan_service)):
+async def get_my_plans(req: GetMyPlanListRequest, planService: PlanService = Depends(get_plan_service)):
     plans = planService.get_my_plans(req)
     return plans
 

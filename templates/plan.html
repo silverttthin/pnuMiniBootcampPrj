@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Travel Plan</title>
@@ -15,39 +15,10 @@
         #plan-list {
             flex: 1;
         }
-        #plan-creation {
-            order: 1;  /* 낮은 order 값 */
-        }
-        #plan-list {
-            order: 2;  /* 높은 order 값 */
-        }
     </style>
 </head>
 <body>
-<!-- 1. Plan 작성 섹션 -->
-<div id="plan-list">
-    <h2>My Plans</h2>
-    {% for plan in plans %}
-    <div class="plan-item">
-        <h3>{{ plan.local_name }} ({{ plan.start_date }} ~ {{ plan.end_date }})</h3>
-        <p>스타일: {{ plan.trip_style }}</p>
-        {% for day in plan.days %}
-        <div class="day">
-            <h4>Day {{ day.day_number }}</h4>
-            <ul>
-                {% for place in day.places %}
-                <li>{{ place.place_name }} - {{ place.place_visit_time }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endfor %}
-    </div>
-    {% else %}
-    <p>작성된 계획이 없습니다.</p>
-    {% endfor %}
-</div>
-
-<!-- 2. Plan 리스트 섹션 -->
+<!--Plan 작성 섹션 -->
 <div id="plan-creation">
     <h2>New Travel Plan</h2>
     <!-- action 속성 없이 JS로 처리 -->
@@ -104,6 +75,32 @@
     </form>
 </div>
 
-<script src="/static/planPage.js"></script>
+<!-- Plan 리스트 섹션 -->
+<div id="plan-list">
+    <h2>My Plans</h2>
+    {% for plan in plans %}
+    <div class="plan-item" data-plan-id="{{plan.id}}">
+        <h3>{{ plan.local_name }} ({{ plan.start_date }} ~ {{ plan.end_date }})</h3>
+        <p>스타일: {{ plan.trip_style }}</p>
+        {% for day in plan.days %}
+        <div class="day">
+            <h4>Day {{ day.day_number }}</h4>
+            <ul>
+                {% for place in day.places %}
+                <li>{{ place.place_name }} - {{ place.place_visit_time }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+        <input class="delete-plan-btn" type="button" value="계획 삭제" >
+
+    </div>
+    {% else %}
+    <p>작성된 계획이 없습니다.</p>
+    {% endfor %}
+</div>
+
+
+<script src="/static/plan.js"></script>
 </body>
 </html>

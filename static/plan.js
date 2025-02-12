@@ -1,4 +1,4 @@
-
+﻿
 // ───────────────────────────────────────────────
 // 1. "장소 추가" 버튼 클릭 시 해당 Day에 새로운 장소 입력 필드를 추가하는 함수
 // ───────────────────────────────────────────────
@@ -57,14 +57,6 @@ document.getElementById('plan-form').addEventListener('submit', async function(e
     const startDate = form.querySelector('input[name="start_date"]').value.trim();
     const endDate = form.querySelector('input[name="end_date"]').value.trim();
     const tripStyle = form.querySelector('select[name="trip_style"]').value;
-
-    console.log({
-        authorId: writerId,
-        location: localName,
-        tripStartDate: startDate,
-        tripEndDate: endDate,
-        travelStyle: tripStyle
-    });
 
     // [2] 각 Day 영역에서 장소 정보를 추출하여 days 배열로 조합
     const days = [];
@@ -189,3 +181,48 @@ document.getElementById('plan-form').addEventListener('submit', async function(e
         alert("계획 생성 중 오류가 발생했습니다.");
     }
 });
+
+
+// 계획 삭제 후 dom 처리
+document.getElementById('plan-list').addEventListener('click', async function(e){
+    // 삭제 버튼인 경우에만 처리
+    if(e.target.classList.contains('delete-plan-btn')) {
+        // 1. 삭제 API request에 필요한 값 구하기
+        const planItem = e.target.closest('.plan-item');
+        console.log(planItem)
+        const planId = parseInt(planItem.dataset.planId);
+        const writerId = parseInt(document.querySelector('input[name="writer_id"]').value, 10)
+
+        // 2. 삭제 요청 보내기
+        try {
+            const response = await fetch('/plans',
+                {
+                    method: 'DELETE',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        plan_id: planId,
+                        user_id: writerId
+                    })
+                }
+            )
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                alert("삭제실패: " + errorData.detail);
+                return;
+            }
+
+            // 3. 삭제 완료 시 DOM에서 제거
+            planItem.remove();
+
+        } catch(err){
+            console.log("삭제 오류: "+ err);
+            alert("계획 삭제 중 오류가 발생했습니다;")
+        }
+
+
+
+
+
+    }
+})
