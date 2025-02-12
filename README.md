@@ -2,7 +2,7 @@
 ## 여행 플랜 서비스 트리플 벤치마킹 서비스
 - 해당 서비스는 혼자 여행하는 사람들이 손쉽게 여행 플랜을 생성할 수 있는 기능을 제공하는 서비스입니다.
 
-<img src="https://github.com/user-attachments/assets/978ba59b-fdda-4550-bcbc-2d532c26f03c">
+
 
 -----
 ## 개발환경
