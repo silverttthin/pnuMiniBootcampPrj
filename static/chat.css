@@ -137,7 +137,9 @@
     transition: all 0.3s ease-in-out;
     border-radius: 0 10px 10px 0;
 }
-
+#user-input{
+    width: 0%;
+}
 /* ✅ 버튼 호버 효과 */
 .chat-input-container button:hover {
     background: linear-gradient(135deg, #004f9f, #0084ff);

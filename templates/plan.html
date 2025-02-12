@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Travel Plan</title>
-
     <style>
         /* 레이아웃 구성을 위한 CSS */
         body {
@@ -16,10 +15,16 @@
             flex: 1;
         }
     </style>
+    <link rel="stylesheet" href="/static/plan.css">
+    <link rel="stylesheet" href="/static/chat.css">
 </head>
 <body>
+<div id="plan-container">
 <!--Plan 작성 섹션 -->
 <div id="plan-creation">
+    <header>
+        <a href="/" id="logo">Temu Triple</a>
+    </header>
     <h2>New Travel Plan</h2>
     <!-- action 속성 없이 JS로 처리 -->
     <form id="plan-form">
@@ -99,8 +104,28 @@
     <p>작성된 계획이 없습니다.</p>
     {% endfor %}
 </div>
+</div>
+<!-- ✅ 챗봇 버튼 -->
+<button id="chatbot-button">💬</button>
 
+<!-- ✅ 챗봇 모달 창 -->
+<div id="chatbot-modal">
+    <div class="chatbot-header">
+        <span>GPT 챗봇</span>
+        <button id="close-chatbot">&times;</button>
+    </div>
+    <div class="chat-container">
+        <div id="chat-box">
+            <div class="chat-message bot">안녕하세요! 무엇을 도와드릴까요?</div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="user-input" placeholder="메시지를 입력하세요..." />
+            <button id="send-button">전송</button>
+        </div>
+    </div>
+</div>
 
 <script src="/static/plan.js"></script>
+<script src="/static/chat.js"></script>
 </body>
 </html>
