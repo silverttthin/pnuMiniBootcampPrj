@@ -26,15 +26,15 @@ FastAPI | Sqlite | Docker|
 
 ----
 ## 개발자 소개 
-- 이시웅
+- [이시웅](https://github.com/silverttthin)
   - ERD 작성 및 ORM 모델링
   - 계획 관련 API 및 페이지 구현
   - 프로젝트 배포
-- 손정훈
+- [손정훈](https://github.com/SonJH7)
   - API 문서 작성
   - GPT 챗봇 API 및 페이지 구현
   - 프론트엔드 작업
-- 송찬호
+- [송찬호](https://github.com/songchanho97)
    - API 문서 작성
    - jwt_token 기반 회원가입, 로그인, 로그아웃 API구현
    - 홈, 회원가입 페이지 구현
