@@ -1,13 +1,36 @@
-# pnuMiniBootcampPrj
-여행 플랜 서비스 트리플 벤치마킹 서비스
+# TemuTriple 
+## 여행 플랜 서비스 트리플 벤치마킹 서비스
+- 해당 서비스는 혼자 여행하는 사람들이 손쉽게 여행 플랜을 생성할 수 있는 기능을 제공하는 서비스입니다.
 
-### 개발 전
-1. venv를 만들어주세요. 이때 파이썬 버전은 3.13.2로 지정해주세요. 만들고 활성화시켜주세요.
-2. requirements.txt에 있는 모듈들로 설치해주세요. ```pip install -r requirements.txt```
-3. 만약 모듈을 install하게 된다면 re반드시 커밋 전에 ```pip freeze > requirememts.txt```로 의존성 문서를 최신화하고 같이 커밋해주세요.
-4. **반드시 브랜치를 만들기 전** 다음 두가지를 확인합시다. 현재 dev인가? 그렇다면 ```git pull --ff-only origin dev```로 dev를 최신화한 상태인가?
-5. 자신이 맡을 기능개발에 맞게 dev에서 브랜치를 분기시킵시다. 이 때 브랜치명은 feature/기능명 으로 가급적 해주세요. _Ex:feature/getPostApi_
+<img src="https://github.com/user-attachments/assets/50d9f1d3-06b6-4096-bd58-f575cd629997">
 
-### 개발 후
-1. 커밋 후 push는 반드시 다음처럼 해주세요. ```git push origin feature/기능명``` 자신이 만든 브랜치명 그대로 적는게 포인트입니다
-2. push할 때 -f 옵션은 반드시 세번 네번 생각합시다. 협업 간 재앙의 원인 1티어입니다.
+-----
+## 개발환경
+- opanai==1.61.1
+- SQLAlchemy==0.0.22
+- fastapi==0.115.8
+- python==3.13.0
+
+----
+## 개발내용
+- ChatGPT API키를 발급받아 챗봇 기능 구현
+- jwt_token을 발급받아 해당 토큰을 쿠키에 담은 뒤에 프론트단에서 쿠키를 통해 사용자 검증
+- 여행 플랜 계획 생성 및 삭제 기능 구현
+
+-------
+## 개발기간
+25.2.3 ~ 25.2.12(약 2주)
+
+----
+## 개발자 소개 
+- 이시웅
+  - 계획생성 API 구현
+- 손정훈
+  - GhatGPT 챗봇 API구현   
+- 송찬호
+   - 회원가입, 로그인, 로그아웃 API구현
+   - jwt_token발행
+ 
+
+ 
+ 
